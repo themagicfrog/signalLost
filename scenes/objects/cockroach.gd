@@ -16,7 +16,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if (body.name == "Player"):
 		var y_delta = position.y - body.position.y
 		var x_delta = body.position.x - position.x
-		if (y_delta > 500):
+		print(y_delta)
+		if (y_delta > 80):
 			print("kill cockroach")
 			queue_free()
 			body.jump()

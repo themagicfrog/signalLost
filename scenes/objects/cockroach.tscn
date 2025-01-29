@@ -3,11 +3,13 @@
 [ext_resource type="Script" path="res://scenes/objects/cockroach.gd" id="1_s4g5q"]
 [ext_resource type="Texture2D" uid="uid://dn0ahilkbchwl" path="res://assets/art/cockroach.png" id="1_u6btc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ydpp"]
-size = Vector2(63, 46)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_auvxj"]
+radius = 28.0
+height = 78.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7syd6"]
-size = Vector2(63, 46)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jg06k"]
+radius = 30.0
+height = 80.0
 
 [node name="Cockroach" type="RigidBody2D"]
 script = ExtResource("1_s4g5q")
@@ -19,13 +21,14 @@ scale = Vector2(0.362069, 0.362069)
 texture = ExtResource("1_u6btc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 2)
-shape = SubResource("RectangleShape2D_3ydpp")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_auvxj")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1.5, 2)
-shape = SubResource("RectangleShape2D_7syd6")
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jg06k")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

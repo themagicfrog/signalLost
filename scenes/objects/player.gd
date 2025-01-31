@@ -1,12 +1,15 @@
 extends CharacterBody2D
 
-const SPEED = 500.0
-const JUMP_VELOCITY = -1000.0
+const SPEED = 700.0
+const JUMP_VELOCITY = -500.0
+const SPACE_GRAVITY = 980
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var coyote_timer: Timer = $CoyoteTimer
+#@onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var jumpEvenIfNotOnGround = true
 var jumpWasPressed = false
+#var gravity = get_gravity()
+var gravityDirection = -1
 
 func jump():
 	velocity.y = JUMP_VELOCITY
@@ -20,17 +23,18 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		jumpEvenIfNotOnGround = true
 		if jumpWasPressed == true:
-			velocity.y = JUMP_VELOCITY
+			velocity.y = JUMP_VELOCITY * gravityDirection
 	
 	if Input.is_action_just_pressed("jump"):
-		jumpWasPressed = true
-		rememberJumpTime()
-		if jumpEvenIfNotOnGround == true:
-			velocity.y = JUMP_VELOCITY
+		#jumpWasPressed = true
+		#rememberJumpTime()
+		#if jumpEvenIfNotOnGround == true:
+		velocity.y = JUMP_VELOCITY * gravityDirection
 	
 	if !is_on_floor():
-		coyoteTime()
-		velocity += get_gravity() * delta
+		#coyoteTime()
+		velocity.y += SPACE_GRAVITY * delta * gravityDirection
+		#b* gravityDirection
 	
 	var direction := Input.get_axis("left", "right")
 	if direction:

@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="vend machine"
+config/name="signalLost"
 run/main_scene="res://scenes/levels/level1.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 
@@ -42,7 +42,7 @@ jump={
 
 [physics]
 
-2d/default_gravity=2800.0
+2d/default_gravity=3200.0
 
 [rendering]
 

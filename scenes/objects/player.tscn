@@ -1,27 +1,28 @@
 [gd_scene load_steps=4 format=3 uid="uid://bhy3pfviq7b0v"]
 
-[ext_resource type="Texture2D" uid="uid://hoeujl4cqr2m" path="res://assets/art/player.png" id="1_hm2w6"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3tbml"]
+load_path = "res://.godot/imported/player.png-c7d0a380c5da2a6bf92079bfaa99329e.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hkeag"]
-size = Vector2(40, 109)
+size = Vector2(46, 108)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cpkhp"]
-radius = 30.0
+radius = 31.0
 height = 68.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(3.43323e-05, 2.00003)
-scale = Vector2(0.604396, 0.69697)
-texture = ExtResource("1_hm2w6")
+position = Vector2(-2, -6)
+scale = Vector2(0.554829, 0.639811)
+texture = SubResource("CompressedTexture2D_3tbml")
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_hkeag")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, -25)
+position = Vector2(-3, -34)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_cpkhp")

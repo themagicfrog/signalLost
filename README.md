@@ -51,7 +51,7 @@ i'm spending 100 hrs over the next 2 months to make this 2d platformer in Godot 
     - #3 alien cave
         1. level design is pretty closed and dark and the paths are like tunnels. there are many different paths, and it is sort of mazelike. 
         2. you will need to interact with the aliens a lot. the aliens are grumpy, so you need to talk very polite with them, and if you make a mistake, it is more likely they will attack you.
-        3. player learns more words (”please”, “thank you”, “hi”, “bye”) and they need to say all of those to the alien, or it will be very unhappy. they learn how to ask questions (”where?”, “who?”, “which?”) and also they learn some numers (“1”, “2”, “3”). they need to remember the past words they learned as well. they also learn words to stop the big alive plants (“sleep”, “quiet”)
+        3. player learns more words (”please”, “thank you”, “hi”, “bye”) and they need to say all of those to the alien, or it will be very unhappy. 
         4. the plants are glowing moss, mushrooms, and glowworms and they will suck away your oxygen bubble if you get too close. in the cave, there is very limited oxygen, so capturing enough air is super important to stay alive!
         5. at the end, they find the rocket fins and store it away!
     

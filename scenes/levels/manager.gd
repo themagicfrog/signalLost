@@ -1,33 +1,51 @@
 extends Node
 
-@onready var oxygenLevel: Label = %OxygenLabel
-@export var hearts : Array[Node]
-@onready var timer: Timer = $"../UI/Timer"
+@onready var oxygen_bar: ProgressBar = $"../UI/Oxygen/OxygenBar"
+@onready var hearts_container = $"../UI/Hearts/HBoxContainer"
+@onready var hearts: Array[Node] = []
+@onready var timer: Timer = $"../UI/Hearts/Timer"
 
-var oxygen = 10
-var lives = 5
+const OXYGEN_REFILL = 15 
+var oxygen = 100
+var lives = 6
 
 func _ready():
+	for heart in hearts_container.get_children():
+		hearts.append(heart)
+	
+	update_hearts()
+
+	oxygen_bar.min_value = 0
+	oxygen_bar.max_value = 100
+	oxygen_bar.step = 1
+	oxygen_bar.value = oxygen
+	
 	timer.start()
 	timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 
-func lose_life():
-	lives -= 1
-	for h in lives:
-		if (h < lives):
+func update_hearts():
+	for h in hearts.size():
+		if h < lives:
 			hearts[h].show()
 		else:
 			hearts[h].hide()
-	if (lives == 0):
+	if lives == 0:
 		get_tree().reload_current_scene()
 
+func lose_life():
+	lives -= 1
+	update_hearts()
+
 func addOxygen():
-	oxygen += 10
-	oxygenLevel.text = str(oxygen)
-	
+	oxygen += 15
+	oxygen_bar.value = oxygen
+	print(oxygen)
+
 func _on_timer_timeout():
+
 	if oxygen > 0:
-		oxygen -= 1
-	oxygenLevel.text = str(oxygen)
-	if oxygen == 0:
+		oxygen -= 0.1
+	oxygen_bar.value = oxygen
+	if oxygen <= 0:
 		lose_life()
+	

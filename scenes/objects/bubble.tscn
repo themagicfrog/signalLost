@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://cg7lmw15iniu"]
+
+[ext_resource type="Script" path="res://scenes/objects/bubble.gd" id="1_f2mqx"]
+[ext_resource type="Texture2D" uid="uid://bhwueori6uvi5" path="res://assets/art/bubble.png" id="2_2kxgn"]
+
+[sub_resource type="Curve" id="Curve_7t7cm"]
+_data = [Vector2(0.048, 0.995539), 0.0, 0.0, 0, 0, Vector2(1, 0.138984), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t3lhc"]
+radius = 34.0147
+
+[node name="Bubble" type="Area2D"]
+script = ExtResource("1_f2mqx")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_7t7cm")
+color = Color(0.607843, 0.776471, 0.952941, 1)
+hue_variation_min = -0.99
+hue_variation_max = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2, 1)
+scale = Vector2(0.244918, 0.244918)
+texture = ExtResource("2_2kxgn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t3lhc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

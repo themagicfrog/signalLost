@@ -11,12 +11,6 @@ var jumpWasPressed = false
 #var gravity = get_gravity()
 var gravityDirection = -1
 
-func jump():
-	velocity.y = JUMP_VELOCITY
-	
-func jump_away(x):
-	velocity.y = JUMP_VELOCITY
-	velocity.x = x
 
 func _physics_process(delta: float) -> void:
 	
@@ -25,11 +19,17 @@ func _physics_process(delta: float) -> void:
 		if jumpWasPressed == true:
 			velocity.y = JUMP_VELOCITY * gravityDirection
 	
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("down"):
 		#jumpWasPressed = true
 		#rememberJumpTime()
 		#if jumpEvenIfNotOnGround == true:
 		velocity.y = JUMP_VELOCITY * gravityDirection
+	
+	if Input.is_action_just_pressed("up"):
+		#jumpWasPressed = true
+		#rememberJumpTime()
+		#if jumpEvenIfNotOnGround == true:
+		velocity.y = JUMP_VELOCITY * gravityDirection * -1
 	
 	if !is_on_floor():
 		#coyoteTime()

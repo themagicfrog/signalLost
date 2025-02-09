@@ -3,12 +3,11 @@ extends Node
 @onready var oxygen_bar: ProgressBar = $"../UI/Oxygen/OxygenBar"
 @onready var hearts_container = $"../UI/Hearts/HBoxContainer"
 @onready var hearts: Array[Node] = []
-@onready var timer: Timer = $"../UI/Timer"
+@onready var timer: Timer = $"../UI/Hearts/Timer"
 
 const OXYGEN_REFILL = 15 
 var oxygen = 100
 var lives = 6
-var oxygen_tween: Tween
 
 func _ready():
 	for heart in hearts_container.get_children():
@@ -38,17 +37,14 @@ func lose_life():
 	update_hearts()
 
 func addOxygen():
-	if oxygen_tween:
-		oxygen_tween.kill()
-	oxygen += 15
 	oxygen_bar.value = oxygen
 	print(oxygen)
 
 func _on_timer_timeout():
 
 	if oxygen > 0:
-		oxygen -= 10
+		oxygen -= 2
 	oxygen_bar.value = oxygen
-	if oxygen == 0:
+	if oxygen <= 0:
 		lose_life()
 	

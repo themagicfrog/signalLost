@@ -25,7 +25,6 @@ func _on_body_entered(body: Node2D) -> void:
 		$CPUParticles2D.emitting = true
 		manager.addOxygen()
 		
-		# Defer the monitoring changes to avoid blocking during signal processing
 		set_deferred("monitoring", false)
 		set_deferred("monitorable", false)
 		

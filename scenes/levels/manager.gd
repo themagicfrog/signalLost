@@ -37,7 +37,7 @@ func lose_life():
 	update_hearts()
 
 func addOxygen():
-	oxygen += 15
+	oxygen = min(oxygen + OXYGEN_REFILL, 100)
 	oxygen_bar.value = oxygen
 	print(oxygen)
 

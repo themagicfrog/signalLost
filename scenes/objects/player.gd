@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 700.0
-const JUMP_VELOCITY = -700.0
+const JUMP_VELOCITY = -500.0
 const SPACE_GRAVITY = 980
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
@@ -11,16 +11,16 @@ var current_gravity = GravityDirection.DOWN
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("gdown"):
 		current_gravity = GravityDirection.DOWN
-		sprite_2d.rotation_degrees = 0
+		rotation_degrees = 0
 	elif Input.is_action_just_pressed("gup"):
 		current_gravity = GravityDirection.UP
-		sprite_2d.rotation_degrees = 180
+		rotation_degrees = 180
 	elif Input.is_action_just_pressed("gleft"):
 		current_gravity = GravityDirection.LEFT
-		sprite_2d.rotation_degrees = 90
+		rotation_degrees = 90
 	elif Input.is_action_just_pressed("gright"):
 		current_gravity = GravityDirection.RIGHT
-		sprite_2d.rotation_degrees = -90
+		rotation_degrees = -90
 	
 	match current_gravity:
 		GravityDirection.DOWN, GravityDirection.UP:

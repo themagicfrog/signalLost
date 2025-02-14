@@ -7,8 +7,8 @@ var time: float = 0.0
 var start_position: Vector2
 var normal_size: Vector2
 var collected = false
-const RESPAWN_TIME = 5.0 
-const SCALE_DURATION = 1.75
+const RESPAWN_TIME = 2 
+const SCALE_DURATION = 1.25
 
 func _ready() -> void:
 	start_position = position

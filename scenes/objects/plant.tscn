@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://bucpm64gkqtkb"]
+
+[ext_resource type="Script" path="res://scenes/objects/plant.gd" id="1_34hqu"]
+[ext_resource type="Texture2D" uid="uid://bsta36wuqbmp3" path="res://assets/art/plant.png" id="1_83hla"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgv7y"]
+size = Vector2(63, 37)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ix3wb"]
+radius = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8w3t"]
+size = Vector2(70, 46)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q7hib"]
+radius = 22.0227
+
+[node name="Plant" type="RigidBody2D"]
+script = ExtResource("1_34hqu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, 2.00001)
+scale = Vector2(0.244966, 0.244966)
+texture = ExtResource("1_83hla")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7.5, 13.5)
+shape = SubResource("RectangleShape2D_mgv7y")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-7, -13)
+shape = SubResource("CircleShape2D_ix3wb")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-7, 9)
+shape = SubResource("RectangleShape2D_m8w3t")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-8, -14)
+shape = SubResource("CircleShape2D_q7hib")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

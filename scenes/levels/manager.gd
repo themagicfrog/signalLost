@@ -43,7 +43,7 @@ func addOxygen():
 
 func decreaseOxygen():
 	if oxygen > 0:
-		oxygen -= 12
+		oxygen -= 10
 	oxygen_bar.value = oxygen
 	if oxygen <= 0:
 		lose_life()

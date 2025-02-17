@@ -50,7 +50,7 @@ func decreaseOxygen():
 	
 func _on_timer_timeout():
 	if oxygen > 0:
-		oxygen -= 3
+		oxygen -= 2
 	oxygen_bar.value = oxygen
 	if oxygen <= 0:
 		lose_life()

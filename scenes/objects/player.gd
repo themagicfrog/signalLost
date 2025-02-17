@@ -30,9 +30,14 @@ func _physics_process(delta: float) -> void:
 		rotation_degrees = -90
 		manager.decreaseOxygen()
 	
-
-	if is_on_floor():
-		jumps_remaining = MAX_JUMPS
+	# Reset jumps based on gravity direction
+	match current_gravity:
+		GravityDirection.DOWN, GravityDirection.UP:
+			if is_on_floor():
+				jumps_remaining = MAX_JUMPS
+		GravityDirection.LEFT, GravityDirection.RIGHT:
+			if is_on_wall():  # Check wall collision instead of floor
+				jumps_remaining = MAX_JUMPS
 	
 	match current_gravity:
 		GravityDirection.DOWN, GravityDirection.UP:
@@ -50,9 +55,9 @@ func _physics_process(delta: float) -> void:
 			
 		GravityDirection.LEFT, GravityDirection.RIGHT:
 			velocity.x += SPACE_GRAVITY * delta * (-1 if current_gravity == GravityDirection.LEFT else 1)
-			if Input.is_action_just_pressed("d" if current_gravity == GravityDirection.LEFT else "a"):
+			if Input.is_action_just_pressed("a" if current_gravity == GravityDirection.RIGHT else "d"):
 				if jumps_remaining > 0:
-					velocity.x = JUMP_VELOCITY * (-1 if current_gravity == GravityDirection.LEFT else 1)
+					velocity.x = JUMP_VELOCITY * (1 if current_gravity == GravityDirection.RIGHT else -1)
 					jumps_remaining -= 1
 
 			var v_direction := Input.get_axis("w", "s")

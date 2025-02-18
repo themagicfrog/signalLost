@@ -18,10 +18,10 @@ i'm spending 100 hrs over the next 2 months to make this 2d platformer in Godot 
 		
 		the player needs a certain amount of air to survive, and if they run out of that, then their health goes down. around the planet, there are bubbles of oxygen that float in different places. the player needs to capture these as they go through the map. once the bubbles are captured, they will take a few seconds to regenerate. the astronaut will have to move quickly between each bubble to stay alive.
 		
-	- #3 magnet walls
-		
-		on this planet, many of the walls are just big magnets. in some places, the astronaut can walk on the walls or the ceiling and each magnet wall has a different amount of strength. the player will be able to tell if a wall is a magnet or not, and how strong it is, based on its appearence. they’ll need to keep in mind the gravity changes as they go through the map. in different places, the strength, direction of it.
-		
+	- #3 gravity direction
+    
+   on this planet, the player can control what direction the gravity pulls using arrow keys.
+  
 	- #4 bonus if time, jetpack
 		
 		the player has a jetpack and they can use it to boost themselves in any direction when they are in the air. they refuel by standing on the ground.

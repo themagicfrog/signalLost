@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1r8803hpj8t1"
-path="res://.godot/imported/alien1-angry.png-45a7b0fc44001e657d9e1722ace7adb1.ctex"
+uid="uid://gbh0kqp3w451"
+path="res://.godot/imported/text-bubble.png-8c1177094db4dc1c7ddd1f1b2df08f98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/aliens/alien1-angry.png"
-dest_files=["res://.godot/imported/alien1-angry.png-45a7b0fc44001e657d9e1722ace7adb1.ctex"]
+source_file="res://assets/art/objects/text-bubble.png"
+dest_files=["res://.godot/imported/text-bubble.png-8c1177094db4dc1c7ddd1f1b2df08f98.ctex"]
 
 [params]
 

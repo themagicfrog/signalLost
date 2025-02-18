@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf8c1wri43ksf"]
+
+[ext_resource type="Script" path="res://scenes/aliens/text_bubble.gd" id="1_vep6g"]
+[ext_resource type="Texture2D" uid="uid://gbh0kqp3w451" path="res://assets/art/objects/text-bubble.png" id="2_5hmo0"]
+
+[node name="Text Bubble" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 317.0
+offset_top = 368.0
+offset_right = 430.0
+offset_bottom = 462.0
+script = ExtResource("1_vep6g")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 113.0
+offset_bottom = 98.0
+texture = ExtResource("2_5hmo0")
+region_rect = Rect2(32, 32, 256, 256)
+
+[node name="SymbolContainer" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 113.0
+offset_bottom = 98.0
+expand_mode = 2

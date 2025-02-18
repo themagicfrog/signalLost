@@ -1,7 +1,7 @@
 extends Area2D
 
 @onready var manager: Node = %Manager
-@onready var sprite: Sprite2D = $Sprite2D 
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D 
 
 var time: float = 0.0
 var start_position: Vector2

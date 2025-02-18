@@ -5,7 +5,7 @@ const JUMP_VELOCITY = -500.0
 const SPACE_GRAVITY = 1000
 const MAX_JUMPS = 2  
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2Ds
 @onready var manager: Node = %Manager
 
 enum GravityDirection { DOWN = 0, UP = 1, LEFT = 2, RIGHT = 3 }
@@ -30,40 +30,47 @@ func _physics_process(delta: float) -> void:
 		rotation_degrees = -90
 		manager.decreaseOxygen()
 	
-	# Reset jumps based on gravity direction
 	match current_gravity:
 		GravityDirection.DOWN, GravityDirection.UP:
 			if is_on_floor():
 				jumps_remaining = MAX_JUMPS
 		GravityDirection.LEFT, GravityDirection.RIGHT:
-			if is_on_wall():  # Check wall collision instead of floor
+			if is_on_wall():  
 				jumps_remaining = MAX_JUMPS
 	
 	match current_gravity:
 		GravityDirection.DOWN, GravityDirection.UP:
 			velocity.y += SPACE_GRAVITY * delta * (1 if current_gravity == GravityDirection.DOWN else -1)
-			if Input.is_action_just_pressed("w" if current_gravity == GravityDirection.DOWN else "s"):
+			if Input.is_action_just_pressed("w" if current_gravity == GravityDirection.DOWN else "s") or \
+			   Input.is_action_just_pressed("ui_up" if current_gravity == GravityDirection.DOWN else "ui_down"):
 				if jumps_remaining > 0:
 					velocity.y = JUMP_VELOCITY * (1 if current_gravity == GravityDirection.DOWN else -1)
 					jumps_remaining -= 1
 
-			var h_direction := Input.get_axis("a", "d")
+			var h_direction = Input.get_axis("a", "d")
+			if h_direction == 0:  
+				h_direction = Input.get_axis("ui_left", "ui_right")
+			
 			velocity.x = h_direction * SPEED if h_direction else move_toward(velocity.x, 0, 28)
 
-			if h_direction != 0:
+			if h_direction != 0 and sprite_2d: 
 				sprite_2d.flip_h = h_direction < 0 if current_gravity == GravityDirection.DOWN else h_direction > 0
 			
 		GravityDirection.LEFT, GravityDirection.RIGHT:
 			velocity.x += SPACE_GRAVITY * delta * (-1 if current_gravity == GravityDirection.LEFT else 1)
-			if Input.is_action_just_pressed("a" if current_gravity == GravityDirection.RIGHT else "d"):
+			if Input.is_action_just_pressed("a" if current_gravity == GravityDirection.RIGHT else "d") or \
+			   Input.is_action_just_pressed("ui_left" if current_gravity == GravityDirection.RIGHT else "ui_right"):
 				if jumps_remaining > 0:
 					velocity.x = JUMP_VELOCITY * (1 if current_gravity == GravityDirection.RIGHT else -1)
 					jumps_remaining -= 1
 
-			var v_direction := Input.get_axis("w", "s")
+			var v_direction = Input.get_axis("w", "s")
+			if v_direction == 0:  
+				v_direction = Input.get_axis("ui_up", "ui_down")
+				
 			velocity.y = v_direction * SPEED if v_direction else move_toward(velocity.y, 0, 28)
 
-			if v_direction != 0:
-				sprite_2d.flip_h = v_direction > 0 if current_gravity == GravityDirection.LEFT else v_direction < 0
+			if v_direction != 0 and sprite_2d:  
+				sprite_2d.flip_h = v_direction < 0 if current_gravity == GravityDirection.LEFT else v_direction > 0
 
 	move_and_slide()

@@ -106,7 +106,7 @@ animations = [{
 size = Vector2(130, 158)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k1ndv"]
-size = Vector2(236.5, 170)
+size = Vector2(394, 170)
 
 [node name="Alien" type="CharacterBody2D"]
 script = ExtResource("1_vioav")
@@ -116,7 +116,7 @@ position = Vector2(8, -24)
 scale = Vector2(0.590625, 0.590625)
 sprite_frames = SubResource("SpriteFrames_77h2h")
 animation = &"idle"
-frame_progress = 0.479338
+frame_progress = 0.299379
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(11, -19)
@@ -125,7 +125,7 @@ shape = SubResource("RectangleShape2D_vn3m6")
 [node name="InteractionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(8, -26)
+position = Vector2(9, -26)
 shape = SubResource("RectangleShape2D_k1ndv")
 
 [node name="Text Bubble" parent="." instance=ExtResource("3_2ook5")]
@@ -134,5 +134,5 @@ offset_top = -222.0
 offset_right = 66.0
 offset_bottom = -128.0
 
-[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
-[connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]

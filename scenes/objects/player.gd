@@ -8,6 +8,7 @@ const SHAKE_THRESHOLD = 800.0
 const MAX_SHAKE = 0.6  
 const FLASH_DURATION = 0.1  
 const NUMBER_OF_FLASHES = 3  
+const SLIDE = 40
 
 @onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2Ds
 @onready var manager: Node = %Manager
@@ -60,7 +61,7 @@ func _physics_process(delta: float) -> void:
 			if h_direction == 0:  
 				h_direction = Input.get_axis("ui_left", "ui_right")
 			
-			velocity.x = h_direction * SPEED if h_direction else move_toward(velocity.x, 0, 28)
+			velocity.x = h_direction * SPEED if h_direction else move_toward(velocity.x, 0, SLIDE)
 
 			if h_direction != 0 and sprite_2d: 
 				sprite_2d.flip_h = h_direction < 0 if current_gravity == GravityDirection.DOWN else h_direction > 0
@@ -77,7 +78,7 @@ func _physics_process(delta: float) -> void:
 			if v_direction == 0:  
 				v_direction = Input.get_axis("ui_up", "ui_down")
 				
-			velocity.y = v_direction * SPEED if v_direction else move_toward(velocity.y, 0, 28)
+			velocity.y = v_direction * SPEED if v_direction else move_toward(velocity.y, 0, SLIDE)
 
 			if v_direction != 0 and sprite_2d:  
 				sprite_2d.flip_h = v_direction < 0 if current_gravity == GravityDirection.LEFT else v_direction > 0

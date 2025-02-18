@@ -26,19 +26,15 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("gdown"):
 		current_gravity = GravityDirection.DOWN
 		rotation_degrees = 0
-		manager.decreaseOxygen()
 	elif Input.is_action_just_pressed("gup"):
 		current_gravity = GravityDirection.UP
 		rotation_degrees = 180
-		manager.decreaseOxygen()
 	elif Input.is_action_just_pressed("gleft"):
 		current_gravity = GravityDirection.LEFT
 		rotation_degrees = 90
-		manager.decreaseOxygen()
 	elif Input.is_action_just_pressed("gright"):
 		current_gravity = GravityDirection.RIGHT
 		rotation_degrees = -90
-		manager.decreaseOxygen()
 	
 	match current_gravity:
 		GravityDirection.DOWN, GravityDirection.UP:
@@ -112,10 +108,7 @@ func shake_camera(intensity: float) -> void:
 		randf_range(-1.0, 1.0) * intensity * 10
 	)
 
-func take_damage() -> void:
-	flash_effect()
-
-func flash_effect() -> void:
+func flash() -> void:
 	var tween = create_tween()
 	for i in range(NUMBER_OF_FLASHES):
 		tween.tween_property(sprite_2d, "modulate:a", 0.2, FLASH_DURATION)

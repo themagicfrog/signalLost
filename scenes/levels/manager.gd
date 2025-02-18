@@ -7,7 +7,7 @@ extends Node
 
 const OXYGEN_REFILL = 14 
 var oxygen = 100
-var lives = 6
+var lives = 5
 
 func _ready():
 	for heart in hearts_container.get_children():

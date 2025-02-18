@@ -75,7 +75,7 @@ hue_variation_max = 1.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kdfem")
 autoplay = "default"
-frame_progress = 0.787697
+frame_progress = 0.118985
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_t3lhc")

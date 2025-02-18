@@ -4,15 +4,24 @@ const SPEED = 700.0
 const JUMP_VELOCITY = -500.0
 const SPACE_GRAVITY = 1000
 const MAX_JUMPS = 2  
+const SHAKE_THRESHOLD = 800.0  
+const MAX_SHAKE = 0.6  
+const FLASH_DURATION = 0.1  
+const NUMBER_OF_FLASHES = 3  
 
 @onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2Ds
 @onready var manager: Node = %Manager
+@onready var camera: Camera2D = $Camera2D  
 
+var previous_velocity := Vector2.ZERO
 enum GravityDirection { DOWN = 0, UP = 1, LEFT = 2, RIGHT = 3 }
 var current_gravity = GravityDirection.DOWN
 var jumps_remaining = MAX_JUMPS
 
 func _physics_process(delta: float) -> void:
+
+	previous_velocity = velocity
+	
 	if Input.is_action_just_pressed("gdown"):
 		current_gravity = GravityDirection.DOWN
 		rotation_degrees = 0
@@ -74,3 +83,39 @@ func _physics_process(delta: float) -> void:
 				sprite_2d.flip_h = v_direction < 0 if current_gravity == GravityDirection.LEFT else v_direction > 0
 
 	move_and_slide()
+	
+	check_impact()
+
+func check_impact() -> void:
+	if is_on_floor() or is_on_ceiling() or is_on_wall():
+		var impact_velocity: float
+		match current_gravity:
+			GravityDirection.DOWN, GravityDirection.UP:
+				impact_velocity = abs(previous_velocity.y)
+			GravityDirection.LEFT, GravityDirection.RIGHT:
+				impact_velocity = abs(previous_velocity.x)
+		
+		if impact_velocity > SHAKE_THRESHOLD:
+			var shake_intensity = clamp(impact_velocity / 2000.0, 0.0, MAX_SHAKE)
+			apply_screen_shake(shake_intensity)
+
+func apply_screen_shake(intensity: float) -> void:
+	if camera:
+		var tween = create_tween()
+		tween.tween_method(shake_camera, 0.0, intensity, 0.1)
+		tween.tween_method(shake_camera, intensity, 0.0, 0.3)
+
+func shake_camera(intensity: float) -> void:
+	camera.offset = Vector2(
+		randf_range(-1.0, 1.0) * intensity * 10,
+		randf_range(-1.0, 1.0) * intensity * 10
+	)
+
+func take_damage() -> void:
+	flash_effect()
+
+func flash_effect() -> void:
+	var tween = create_tween()
+	for i in range(NUMBER_OF_FLASHES):
+		tween.tween_property(sprite_2d, "modulate:a", 0.2, FLASH_DURATION)
+		tween.tween_property(sprite_2d, "modulate:a", 1.0, FLASH_DURATION)

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/aliens/alien.gd" id="1_y4f2p"]
 [ext_resource type="Texture2D" uid="uid://bealg0ao05rl0" path="res://assets/art/aliens/alien1-idle.png" id="2_cil76"]
 [ext_resource type="Texture2D" uid="uid://1r8803hpj8t1" path="res://assets/art/aliens/alien1-angry.png" id="2_gdyhw"]
-[ext_resource type="PackedScene" uid="uid://bf8c1wri43ksf" path="res://scenes/aliens/text_bubble.tscn" id="3_2ook5"]
+[ext_resource type="PackedScene" uid="uid://rnmcjo0rlxvh" path="res://scenes/aliens/prompt.tscn" id="4_bkpwu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6pb7"]
 atlas = ExtResource("2_gdyhw")
@@ -106,7 +106,7 @@ animations = [{
 size = Vector2(130, 158)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k1ndv"]
-size = Vector2(394, 170)
+size = Vector2(513, 170)
 
 [node name="Alien" type="CharacterBody2D"]
 script = ExtResource("1_y4f2p")
@@ -125,14 +125,16 @@ shape = SubResource("RectangleShape2D_vn3m6")
 [node name="InteractionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(15, -26)
+position = Vector2(13.5, -26)
 shape = SubResource("RectangleShape2D_k1ndv")
 
-[node name="Text Bubble" parent="." instance=ExtResource("3_2ook5")]
-offset_left = -47.0
-offset_top = -222.0
-offset_right = 66.0
-offset_bottom = -128.0
+[node name="Prompt" parent="." instance=ExtResource("4_bkpwu")]
+anchor_top = 0.0
+anchor_right = 0.0
+offset_left = -40.0
+offset_top = -200.0
+offset_right = 56.0
+offset_bottom = -120.0
 
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]

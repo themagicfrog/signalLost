@@ -20,7 +20,10 @@ func _ready():
 func addOxygen():
 	oxygen = min(oxygen + OXYGEN_REFILL, 100)
 	oxygen_bar.value = oxygen
-	print(oxygen)
+	
+func refillOxygen():
+	oxygen = 100
+	oxygen_bar.value = oxygen
 
 func decreaseOxygen():
 	if oxygen > 0:
@@ -30,7 +33,6 @@ func decreaseOxygen():
 func _on_timer_timeout():
 	if oxygen > 0:
 		oxygen -= 2
-	oxygen_bar.value = oxygen
-	if oxygen <= 0:
+		oxygen_bar.value = oxygen
+	else:
 		get_tree().reload_current_scene()
-	

@@ -63,7 +63,7 @@ size = Vector2(119, 62)
 size = Vector2(131, 68)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jgadi"]
-size = Vector2(69, 136)
+size = Vector2(82, 143)
 
 [node name="Plant1" type="RigidBody2D"]
 script = ExtResource("1_asqo8")
@@ -90,7 +90,7 @@ position = Vector2(-4.5, 15)
 shape = SubResource("RectangleShape2D_m8w3t")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-6.5, -58)
+position = Vector2(-7, -61.5)
 shape = SubResource("RectangleShape2D_jgadi")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

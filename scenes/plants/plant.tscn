@@ -1,7 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://bucpm64gkqtkb"]
+[gd_scene load_steps=23 format=3 uid="uid://bucpm64gkqtkb"]
 
 [ext_resource type="Script" path="res://scenes/plants/plant.gd" id="1_iqtrd"]
 [ext_resource type="Texture2D" uid="uid://c8sdrwp67udw7" path="res://assets/art/plants/plant1-sheet.png" id="2_moveh"]
+[ext_resource type="Texture2D" uid="uid://djqb3utx5lef7" path="res://assets/art/plants/plant1-descend-Sheet.png" id="3_vl5ll"]
+
+[sub_resource type="Curve" id="Curve_6s1qn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.653562), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ol77"]
 atlas = ExtResource("2_moveh")
@@ -18,6 +23,42 @@ region = Rect2(320, 0, 160, 160)
 [sub_resource type="AtlasTexture" id="AtlasTexture_stm25"]
 atlas = ExtResource("2_moveh")
 region = Rect2(480, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25eu4"]
+atlas = ExtResource("3_vl5ll")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h86h6"]
+atlas = ExtResource("3_vl5ll")
+region = Rect2(160, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws58o"]
+atlas = ExtResource("3_vl5ll")
+region = Rect2(320, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbc23"]
+atlas = ExtResource("3_vl5ll")
+region = Rect2(480, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwckf"]
+atlas = ExtResource("3_vl5ll")
+region = Rect2(640, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pd0h"]
+atlas = ExtResource("3_vl5ll")
+region = Rect2(800, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhn2o"]
+atlas = ExtResource("3_vl5ll")
+region = Rect2(960, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kof0r"]
+atlas = ExtResource("3_vl5ll")
+region = Rect2(1120, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65ob3"]
+atlas = ExtResource("3_vl5ll")
+region = Rect2(1280, 0, 160, 160)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ogiad"]
 animations = [{
@@ -37,6 +78,38 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25eu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h86h6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws58o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbc23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwckf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pd0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhn2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kof0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65ob3")
+}],
+"loop": false,
+"name": &"descend",
+"speed": 11.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgv7y"]
@@ -54,12 +127,27 @@ radius = 39.0
 [node name="Plant1" type="RigidBody2D"]
 script = ExtResource("1_iqtrd")
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-3, 0)
+amount = 15
+lifetime = 1.3
+emission_shape = 3
+emission_rect_extents = Vector2(50, 1)
+gravity = Vector2(0, -100)
+angular_velocity_min = -160.0
+angular_velocity_max = 700.3
+angle_min = -720.0
+angle_max = -128.0
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_6s1qn")
+color = Color(1, 0.804368, 0.444311, 1)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-6, -12)
 scale = Vector2(0.942969, 0.942969)
 sprite_frames = SubResource("SpriteFrames_ogiad")
-autoplay = "default"
-frame_progress = 0.379283
+animation = &"descend"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4.5, 13.5)

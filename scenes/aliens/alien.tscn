@@ -103,10 +103,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vn3m6"]
-size = Vector2(130, 158)
+size = Vector2(106, 158)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k1ndv"]
-size = Vector2(513, 170)
+size = Vector2(366, 156)
 
 [node name="Alien" type="CharacterBody2D"]
 script = ExtResource("1_y4f2p")
@@ -119,13 +119,13 @@ animation = &"idle"
 frame_progress = 0.299379
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(11, -19)
+position = Vector2(7, -19)
 shape = SubResource("RectangleShape2D_vn3m6")
 
 [node name="InteractionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(13.5, -26)
+position = Vector2(17, -19)
 shape = SubResource("RectangleShape2D_k1ndv")
 
 [node name="Prompt" parent="." instance=ExtResource("4_bkpwu")]

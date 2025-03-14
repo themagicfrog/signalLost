@@ -1,0 +1,169 @@
+[gd_scene load_steps=24 format=3 uid="uid://bphg1s2c7xhp8"]
+
+[ext_resource type="Script" path="res://scenes/aliens/alien.gd" id="1_e5mij"]
+[ext_resource type="Texture2D" uid="uid://upfgki6fur88" path="res://assets/art/aliens/alien2-angry-sheet.png" id="2_6tg67"]
+[ext_resource type="Texture2D" uid="uid://6nilnflmnrhq" path="res://assets/art/aliens/alien2-idle-sheet.png" id="2_qn76o"]
+[ext_resource type="PackedScene" uid="uid://rnmcjo0rlxvh" path="res://scenes/aliens/prompt.tscn" id="4_4ohs7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1we0"]
+atlas = ExtResource("2_6tg67")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eetqq"]
+atlas = ExtResource("2_6tg67")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m56x1"]
+atlas = ExtResource("2_6tg67")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_et8ch"]
+atlas = ExtResource("2_6tg67")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtm5t"]
+atlas = ExtResource("2_6tg67")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvma4"]
+atlas = ExtResource("2_6tg67")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3l8s"]
+atlas = ExtResource("2_6tg67")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tctpv"]
+atlas = ExtResource("2_6tg67")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coe24"]
+atlas = ExtResource("2_qn76o")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1852x"]
+atlas = ExtResource("2_qn76o")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk40p"]
+atlas = ExtResource("2_qn76o")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_il85n"]
+atlas = ExtResource("2_qn76o")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17y2w"]
+atlas = ExtResource("2_qn76o")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_er5mh"]
+atlas = ExtResource("2_qn76o")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hmo1"]
+atlas = ExtResource("2_qn76o")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbvdw"]
+atlas = ExtResource("2_qn76o")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vvi85"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1we0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eetqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m56x1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_et8ch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtm5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvma4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3l8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tctpv")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_coe24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1852x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sk40p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_il85n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17y2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_er5mh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hmo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbvdw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 14.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vn3m6"]
+size = Vector2(130, 158)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1ndv"]
+size = Vector2(366, 158)
+
+[node name="Alien2" type="CharacterBody2D"]
+script = ExtResource("1_e5mij")
+initial_dialogue_id = "alien_greeting_2"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9, -15)
+scale = Vector2(6.60078, 6.60078)
+sprite_frames = SubResource("SpriteFrames_vvi85")
+animation = &"angry"
+frame_progress = 0.55817
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(11, -19)
+shape = SubResource("RectangleShape2D_vn3m6")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(17, -20)
+shape = SubResource("RectangleShape2D_k1ndv")
+
+[node name="Prompt" parent="." instance=ExtResource("4_4ohs7")]
+anchor_top = 0.0
+anchor_right = 0.0
+offset_left = -40.0
+offset_top = -200.0
+offset_right = 56.0
+offset_bottom = -120.0
+
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]

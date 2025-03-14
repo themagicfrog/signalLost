@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var manager: Node = %Manager
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D 
+@onready var sfx_bubble: AudioStreamPlayer = $sfx_bubble
 
 var time: float = 0.0
 var start_position: Vector2
@@ -23,6 +24,8 @@ func _on_body_entered(body: Node2D) -> void:
 		collected = true
 		sprite.hide()
 		$CPUParticles2D.emitting = true
+		sfx_bubble.pitch_scale = randf_range(0.6, 1.0)
+		sfx_bubble.play()
 		manager.addOxygen()
 		
 		set_deferred("monitoring", false)

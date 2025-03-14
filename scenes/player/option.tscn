@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0gr83erkv73e"]
 
-[ext_resource type="Script" path="res://scenes/aliens/prompt.gd" id="1_me02f"]
+[ext_resource type="Script" path="res://scenes/player/symbol_display.gd" id="1_f1adu"]
 [ext_resource type="Texture2D" uid="uid://gbh0kqp3w451" path="res://assets/art/objects/text-bubble.png" id="2_s0mtv"]
 
 [node name="Option" type="Control"]
@@ -13,7 +13,7 @@ offset_left = -0.399998
 offset_top = 0.064003
 offset_right = -0.296032
 offset_bottom = 8.528
-script = ExtResource("1_me02f")
+script = ExtResource("1_f1adu")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -25,7 +25,7 @@ grow_vertical = 2
 texture = ExtResource("2_s0mtv")
 region_rect = Rect2(32, 32, 256, 256)
 
-[node name="SymbolContainer" type="TextureRect" parent="."]
+[node name="Symbol" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

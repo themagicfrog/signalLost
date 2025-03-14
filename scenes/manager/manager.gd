@@ -4,6 +4,8 @@ extends Node
 @onready var hearts: Array[Node] = []
 @onready var timer: Timer = $"../UI/Timer"
 
+signal oxygen_level_changed(amount: float)
+
 const OXYGEN_REFILL = 14 
 var oxygen = 100
 
@@ -20,19 +22,23 @@ func _ready():
 func addOxygen():
 	oxygen = min(oxygen + OXYGEN_REFILL, 100)
 	oxygen_bar.value = oxygen
+	oxygen_level_changed.emit(oxygen)
 	
 func refillOxygen():
 	oxygen = 100
 	oxygen_bar.value = oxygen
+	oxygen_level_changed.emit(oxygen)
 
 func decreaseOxygen():
 	if oxygen > 0:
 		oxygen -= 25
 	oxygen_bar.value = oxygen
+	oxygen_level_changed.emit(oxygen)
 	
 func _on_timer_timeout():
 	if oxygen > 0:
 		oxygen -= 2
 		oxygen_bar.value = oxygen
+		oxygen_level_changed.emit(oxygen)
 	else:
 		get_tree().reload_current_scene()

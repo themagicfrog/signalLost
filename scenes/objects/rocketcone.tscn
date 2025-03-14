@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://dl83cjedlvnww"]
+
+[ext_resource type="Script" path="res://scenes/objects/rocketcone.gd" id="1_ryaue"]
+[ext_resource type="Texture2D" uid="uid://d1debqndk2bgd" path="res://assets/art/objects/rocketcone.png" id="2_06dw2"]
+
+[sub_resource type="Curve" id="Curve_7t7cm"]
+_data = [Vector2(0.048, 0.995539), 0.0, 0.0, 0, 0, Vector2(1, 0.138984), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_af588"]
+offsets = PackedFloat32Array(0.00342466, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t3lhc"]
+radius = 96.0833
+
+[node name="RocketCone" type="Area2D"]
+script = ExtResource("1_ryaue")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 90
+lifetime = 3.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 15.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_7t7cm")
+color_ramp = SubResource("Gradient_af588")
+hue_variation_min = -0.99
+hue_variation_max = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(2.15625, 2.15625)
+texture = ExtResource("2_06dw2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_t3lhc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

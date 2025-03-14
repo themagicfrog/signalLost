@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cg7lmw15iniu"]
+[gd_scene load_steps=12 format=3 uid="uid://cg7lmw15iniu"]
 
 [ext_resource type="Script" path="res://scenes/objects/bubble.gd" id="1_f2mqx"]
 [ext_resource type="Texture2D" uid="uid://dumimqllkg77h" path="res://assets/art/objects/bubble-sheet.png" id="2_aeoua"]
+[ext_resource type="AudioStream" uid="uid://bu1lxgj3mbd15" path="res://assets/sounds/bubble.mp3" id="3_bixi7"]
 
 [sub_resource type="Curve" id="Curve_7t7cm"]
 _data = [Vector2(0.048, 0.995539), 0.0, 0.0, 0, 0, Vector2(1, 0.138984), 0.0, 0.0, 0, 0]
@@ -79,5 +80,10 @@ frame_progress = 0.118985
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_t3lhc")
+
+[node name="sfx_bubble" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bixi7")
+volume_db = -15.0
+pitch_scale = 0.8
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

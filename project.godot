@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="signalLost"
+config/name="signalLost WOW"
 run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 

@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://btx2viasgnpn0"]
+
+[ext_resource type="Script" path="res://scenes/plants/plant.gd" id="1_a5c5a"]
+[ext_resource type="Texture2D" uid="uid://gcywdm2fmg76" path="res://assets/art/plants/plant4-sheet.png" id="2_taqkc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmp5h"]
+atlas = ExtResource("2_taqkc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nl3l"]
+atlas = ExtResource("2_taqkc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8415c"]
+atlas = ExtResource("2_taqkc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogiad"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmp5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nl3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8415c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgv7y"]
+size = Vector2(117, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ix3wb"]
+radius = 46.0109
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8w3t"]
+size = Vector2(129, 18)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q7hib"]
+radius = 52.0096
+
+[node name="Plant1" type="RigidBody2D"]
+script = ExtResource("1_a5c5a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3.02187, -18.9781)
+scale = Vector2(4.31387, 4.31387)
+sprite_frames = SubResource("SpriteFrames_ogiad")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5.5, 32.5)
+shape = SubResource("RectangleShape2D_mgv7y")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-4, -35)
+shape = SubResource("CircleShape2D_ix3wb")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-5.5, 32)
+shape = SubResource("RectangleShape2D_m8w3t")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4, -38)
+shape = SubResource("CircleShape2D_q7hib")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

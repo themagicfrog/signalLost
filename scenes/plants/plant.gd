@@ -10,5 +10,7 @@ func _process(_delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if (body.name == "Player"):
+		body.flash()
+		await get_tree().create_timer(0.5).timeout
 		manager.decreaseOxygen()
-		body.flash()  
+		#body.apply_screen_shake(0.7) 

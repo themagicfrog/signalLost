@@ -29,11 +29,11 @@ func get_dialogue(dialogue_id: String) -> Dictionary:
 func process_effect(effect: Dictionary, player: Node2D, alien: Node2D) -> void:
 	if effect.type is Array:
 		for effect_type in effect.type:
-			process_single_effect(effect_type)
+			process_single_effect(effect_type, alien)
 	else:
-		process_single_effect(effect.type)
+		process_single_effect(effect.type, alien)
 
-func process_single_effect(effect_type: String) -> void:
+func process_single_effect(effect_type: String, alien: Node2D) -> void:
 	match effect_type:
 		"heal":
 			var manager = get_node_or_null("%Manager")
@@ -41,6 +41,7 @@ func process_single_effect(effect_type: String) -> void:
 		"damage":
 			var manager = get_node_or_null("%Manager")
 			manager.decreaseOxygen()
+			alien.play_animation("angry")
 		"door":
 			var plant_doors = get_tree().get_nodes_in_group("plant_door")
 			for door in plant_doors:

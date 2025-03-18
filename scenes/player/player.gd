@@ -10,7 +10,7 @@ const SLIDE = 50
 const OXYGEN_RED = 25
 const OXYGEN_OHNO = 15
 const INITIAL_ZOOM = Vector2(0.35, 0.35)  
-const FINAL_ZOOM = Vector2(1, 1)  
+const FINAL_ZOOM = Vector2(0.9, 0.9)  
 const ZOOM_DURATION = 1.5  
 const KEY_FADE_DURATION = 0.2
 const KEY_FADE_OUT_DURATION = 0.5
@@ -25,9 +25,13 @@ const KEY_FADE_OUT_DURATION = 0.5
 @onready var plant_door: RigidBody2D = $"../../Sections/Sky/Plants/PlantDoor"
 @onready var animated_sprite_2_ds: AnimatedSprite2D = $AnimatedSprite2Ds
 @onready var dialogue_manager = get_tree().get_first_node_in_group("dialogue_manager")
+
 @onready var sfx_jump: AudioStreamPlayer = $"Sound Effects/sfx_jump"
 @onready var sfx_jetpack: AudioStreamPlayer = $"Sound Effects/sfx_jetpack"
 @onready var sfx_whoosh: AudioStreamPlayer = $"Sound Effects/sfx_whoosh"
+@onready var sfx_click: AudioStreamPlayer = $"Sound Effects/sfx_click"
+@onready var sfx_retroselect: AudioStreamPlayer = $"Sound Effects/sfx_retroselect"
+
 @onready var w_key: TextureRect = $HBoxContainer/w
 @onready var a_key: TextureRect = $HBoxContainer/a
 @onready var s_key: TextureRect = $HBoxContainer/s
@@ -36,6 +40,7 @@ const KEY_FADE_OUT_DURATION = 0.5
 @onready var down_key: TextureRect = $HBoxContainer2/down
 @onready var right_key: TextureRect = $HBoxContainer2/right
 @onready var left_key: TextureRect = $HBoxContainer2/left
+
 
 var previous_velocity := Vector2.ZERO
 enum GravityDirection { DOWN = 0, UP = 1, LEFT = 2, RIGHT = 3 }
@@ -264,6 +269,8 @@ func update_option_symbols(symbols: Array) -> void:
 		option_2.get_node("Symbol").texture = preload("res://assets/art/language/no.png")
 
 func select_current_option() -> void:
+	sfx_retroselect.pitch_scale = randf_range(0.8, 1.2)
+	sfx_retroselect.play()
 	if current_alien:
 		current_alien.handle_player_choice(current_option)
 	end_alien_interaction()
@@ -272,6 +279,8 @@ func _process(_delta: float) -> void:
 	# Check for alien interaction
 	if is_in_alien_zone:
 		if Input.is_action_just_pressed("toggle"):
+			sfx_click.pitch_scale = randf_range(0.8, 1.2)
+			sfx_click.play()
 			current_option = 2 if current_option == 1 else 1
 			update_option_appearance()
 		

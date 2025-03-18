@@ -66,8 +66,3 @@ func _on_interaction_area_area_exited(area: Area2D) -> void:
 		prompt.hide()
 		sprite.play("idle")
 		area.owner.end_alien_interaction()
-
-func play_angry_animation() -> void:
-	sprite.play("angry")
-	await get_tree().create_timer(2.0).timeout
-	sprite.play("idle")

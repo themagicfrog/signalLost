@@ -1,8 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://cg7lmw15iniu"]
+[gd_scene load_steps=14 format=3 uid="uid://cg7lmw15iniu"]
 
 [ext_resource type="Script" path="res://scenes/objects/bubble.gd" id="1_f2mqx"]
 [ext_resource type="Texture2D" uid="uid://dumimqllkg77h" path="res://assets/art/objects/bubble-sheet.png" id="2_aeoua"]
 [ext_resource type="AudioStream" uid="uid://bu1lxgj3mbd15" path="res://assets/sounds/bubble.mp3" id="3_bixi7"]
+
+[sub_resource type="Gradient" id="Gradient_1o3bn"]
+offsets = PackedFloat32Array(0, 0.71)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6v0ii"]
+gradient = SubResource("Gradient_1o3bn")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Curve" id="Curve_7t7cm"]
 _data = [Vector2(0.048, 0.995539), 0.0, 0.0, 0, 0, Vector2(1, 0.138984), 0.0, 0.0, 0, 0]
@@ -56,6 +65,13 @@ radius = 34.0147
 
 [node name="Bubble" type="Area2D"]
 script = ExtResource("1_f2mqx")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0.499999, 0.499999)
+scale = Vector2(1.79688, 1.79688)
+color = Color(0.578412, 0.814561, 0.924511, 1)
+energy = 0.0
+texture = SubResource("GradientTexture2D_6v0ii")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bhy3pfviq7b0v"]
+[gd_scene load_steps=62 format=3 uid="uid://bhy3pfviq7b0v"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_itm0m"]
 [ext_resource type="Texture2D" uid="uid://cylktpa3lepce" path="res://assets/art/player/astronaut-idle.png" id="2_23xlr"]
@@ -11,8 +11,10 @@
 [ext_resource type="AudioStream" uid="uid://26au55rogsfd" path="res://assets/sounds/sci-fi-jump.mp3" id="10_c5f35"]
 [ext_resource type="AudioStream" uid="uid://toi7k5kt6wkn" path="res://assets/sounds/jetpack.mp3" id="11_llugd"]
 [ext_resource type="AudioStream" uid="uid://u5783lbs2811" path="res://assets/sounds/whoosh.mp3" id="11_tsibf"]
+[ext_resource type="AudioStream" uid="uid://d1ke7o2e0crp0" path="res://assets/sounds/click.mp3" id="12_7qgkn"]
 [ext_resource type="Texture2D" uid="uid://ikuefyc1ag25" path="res://assets/art/tutorial/w.png" id="12_h2diu"]
 [ext_resource type="Texture2D" uid="uid://c1pchowdh7tmd" path="res://assets/art/tutorial/a.png" id="13_nm7d2"]
+[ext_resource type="AudioStream" uid="uid://du4mqnga0h6sw" path="res://assets/sounds/retroselect.mp3" id="13_tc3db"]
 [ext_resource type="Texture2D" uid="uid://s864qxjnf83y" path="res://assets/art/tutorial/s.png" id="14_r0rib"]
 [ext_resource type="Texture2D" uid="uid://d14mpdeypmf2w" path="res://assets/art/tutorial/d.png" id="15_h7u5e"]
 [ext_resource type="Texture2D" uid="uid://bo0qm2ut8qx30" path="res://assets/art/tutorial/up.png" id="16_8obll"]
@@ -431,6 +433,13 @@ volume_db = -25.0
 [node name="sfx_whoosh" type="AudioStreamPlayer" parent="Sound Effects"]
 stream = ExtResource("11_tsibf")
 pitch_scale = 0.6
+
+[node name="sfx_click" type="AudioStreamPlayer" parent="Sound Effects"]
+stream = ExtResource("12_7qgkn")
+
+[node name="sfx_retroselect" type="AudioStreamPlayer" parent="Sound Effects"]
+stream = ExtResource("13_tc3db")
+volume_db = -15.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 15

@@ -1,48 +1,55 @@
-[gd_scene load_steps=11 format=3 uid="uid://cafxvwb15c3ue"]
+[gd_scene load_steps=12 format=3 uid="uid://cafxvwb15c3ue"]
 
 [ext_resource type="Script" path="res://scenes/plants/plant.gd" id="1_xg2b8"]
-[ext_resource type="Texture2D" uid="uid://gcywdm2fmg76" path="res://assets/art/plants/plant4-sheet.png" id="2_ga78o"]
+[ext_resource type="Texture2D" uid="uid://ctakdti08hryp" path="res://assets/art/plants/plant5-sheet.png" id="2_135rv"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gmp5h"]
-atlas = ExtResource("2_ga78o")
+[sub_resource type="AtlasTexture" id="AtlasTexture_swba5"]
+atlas = ExtResource("2_135rv")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5nl3l"]
-atlas = ExtResource("2_ga78o")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ofdf"]
+atlas = ExtResource("2_135rv")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8415c"]
-atlas = ExtResource("2_ga78o")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ec3ia"]
+atlas = ExtResource("2_135rv")
 region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pfig"]
+atlas = ExtResource("2_135rv")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ogiad"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gmp5h")
+"texture": SubResource("AtlasTexture_swba5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5nl3l")
+"texture": SubResource("AtlasTexture_0ofdf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8415c")
+"texture": SubResource("AtlasTexture_ec3ia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pfig")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 11.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgv7y"]
-size = Vector2(117, 15)
+size = Vector2(84, 15)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ix3wb"]
-radius = 46.0109
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmm2r"]
+size = Vector2(52, 72)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m8w3t"]
-size = Vector2(129, 18)
+size = Vector2(83, 18)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_q7hib"]
-radius = 52.0096
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjpye"]
+size = Vector2(53, 70)
 
 [node name="Plant1" type="RigidBody2D"]
 script = ExtResource("1_xg2b8")
@@ -52,23 +59,24 @@ position = Vector2(-3.02187, -18.9781)
 scale = Vector2(4.31387, 4.31387)
 sprite_frames = SubResource("SpriteFrames_ogiad")
 autoplay = "default"
+frame_progress = 0.981183
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5.5, 32.5)
+position = Vector2(-5, 32.5)
 shape = SubResource("RectangleShape2D_mgv7y")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-4, -35)
-shape = SubResource("CircleShape2D_ix3wb")
+position = Vector2(-4, -9)
+shape = SubResource("RectangleShape2D_gmm2r")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-5.5, 32)
+position = Vector2(-3.5, 32)
 shape = SubResource("RectangleShape2D_m8w3t")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-4, -38)
-shape = SubResource("CircleShape2D_q7hib")
+position = Vector2(-3.5, -12)
+shape = SubResource("RectangleShape2D_qjpye")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

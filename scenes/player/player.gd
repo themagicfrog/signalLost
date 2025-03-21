@@ -276,7 +276,6 @@ func select_current_option() -> void:
 	end_alien_interaction()
 
 func _process(_delta: float) -> void:
-	# Check for alien interaction
 	if is_in_alien_zone:
 		if Input.is_action_just_pressed("toggle"):
 			sfx_click.pitch_scale = randf_range(0.8, 1.2)
@@ -287,7 +286,6 @@ func _process(_delta: float) -> void:
 		if Input.is_action_just_pressed("confirm"): 
 			select_current_option()
 	
-	# Check for key presses to fade out tutorial icons
 	if w_key.modulate.a > 0 and Input.is_action_just_pressed("w"):
 		fade_out_key(w_key)
 	if a_key.modulate.a > 0 and Input.is_action_just_pressed("a"):
@@ -297,7 +295,6 @@ func _process(_delta: float) -> void:
 	if d_key.modulate.a > 0 and Input.is_action_just_pressed("d"):
 		fade_out_key(d_key)
 	
-	# Arrow keys
 	if up_key.modulate.a > 0 and Input.is_action_just_pressed("ui_up"):
 		fade_out_key(up_key)
 	if down_key.modulate.a > 0 and Input.is_action_just_pressed("ui_down"):

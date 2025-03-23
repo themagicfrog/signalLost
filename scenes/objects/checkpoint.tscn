@@ -1,13 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://l76x3crmpq1"]
+[gd_scene load_steps=4 format=3 uid="uid://017qy47pjqv0"]
 
-[ext_resource type="Script" path="res://scenes/objects/checkpoint.gd" id="1_r77br"]
 [ext_resource type="Texture2D" uid="uid://b2naqxfep5xy" path="res://assets/art/objects/star.png" id="1_rj5qk"]
+
+[sub_resource type="GDScript" id="GDScript_hx15e"]
+script/source = "extends Area2D
+
+@onready var checkpoint_manager: Node2D = $CheckpointManager
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	checkpoint_manager.last_location = $\"Respawn Point\".global_position
+"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kwmsb"]
 radius = 25.0
 
 [node name="Checkpoint" type="Area2D"]
-script = ExtResource("1_r77br")
+script = SubResource("GDScript_hx15e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1.50001, -10.5)

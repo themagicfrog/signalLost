@@ -22,7 +22,7 @@ const KEY_FADE_OUT_DURATION = 0.5
 @onready var particles2: CPUParticles2D = $CPUParticles2D2
 @onready var option_1: Control = $Option1
 @onready var option_2: Control = $Option2
-@onready var plant_door: RigidBody2D = $"../../Sections/Sky/Plants/PlantDoor"
+@onready var plant_door: RigidBody2D = $"../Sections/Sky/Plants/PlantDoor"
 @onready var animated_sprite_2_ds: AnimatedSprite2D = $AnimatedSprite2Ds
 @onready var dialogue_manager = get_tree().get_first_node_in_group("dialogue_manager")
 

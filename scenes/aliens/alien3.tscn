@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://cv2revcl5u0n0"]
+
+[ext_resource type="Script" path="res://scenes/aliens/alien.gd" id="1_rmc3l"]
+[ext_resource type="Texture2D" uid="uid://c73itvn0cyl3l" path="res://assets/art/aliens/alien3-idle-Sheet.png" id="2_bi8ne"]
+[ext_resource type="PackedScene" uid="uid://rnmcjo0rlxvh" path="res://scenes/aliens/prompt.tscn" id="4_owlod"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mm4sn"]
+atlas = ExtResource("2_bi8ne")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ape0"]
+atlas = ExtResource("2_bi8ne")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jurfb"]
+atlas = ExtResource("2_bi8ne")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxu67"]
+atlas = ExtResource("2_bi8ne")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vvi85"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mm4sn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ape0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jurfb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxu67")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vn3m6"]
+size = Vector2(127, 142)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1ndv"]
+size = Vector2(366, 158)
+
+[node name="Alien3" type="CharacterBody2D"]
+script = ExtResource("1_rmc3l")
+initial_dialogue_id = "alien_greeting_2"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.806247, -23.1938)
+scale = Vector2(7.11289, 7.11289)
+sprite_frames = SubResource("SpriteFrames_vvi85")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.503323
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(9.5, -11)
+shape = SubResource("RectangleShape2D_vn3m6")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(17, -12)
+shape = SubResource("RectangleShape2D_k1ndv")
+
+[node name="Prompt" parent="." instance=ExtResource("4_owlod")]
+anchor_top = 0.0
+anchor_right = 0.0
+offset_left = -40.0
+offset_top = -200.0
+offset_right = 56.0
+offset_bottom = -120.0
+
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]

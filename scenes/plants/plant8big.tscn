@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://by4cr3bkl2jb"]
+
+[ext_resource type="Script" path="res://scenes/plants/plant.gd" id="1_j8at5"]
+[ext_resource type="Texture2D" uid="uid://bbnjll58tfs41" path="res://assets/art/plants/plant8big.png" id="2_hbkpw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yu74c"]
+atlas = ExtResource("2_hbkpw")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogiad"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yu74c")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmm2r"]
+size = Vector2(365, 381)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjpye"]
+size = Vector2(375, 387)
+
+[node name="Plant1" type="RigidBody2D"]
+script = ExtResource("1_j8at5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -7)
+scale = Vector2(4.31387, 4.31387)
+sprite_frames = SubResource("SpriteFrames_ogiad")
+animation = &"new_animation"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-9.5, 0.5)
+shape = SubResource("RectangleShape2D_gmm2r")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-9.5, -1.5)
+shape = SubResource("RectangleShape2D_qjpye")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

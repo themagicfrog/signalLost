@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://rnmcjo0rlxvh"]
+[gd_scene load_steps=3 format=3 uid="uid://cyc1n2bjfgb82"]
 
-[ext_resource type="Texture2D" uid="uid://gbh0kqp3w451" path="res://assets/art/objects/text-bubble.png" id="2_5hmo0"]
-[ext_resource type="Texture2D" uid="uid://buosugr07hffo" path="res://assets/art/language/no.png" id="2_yxoov"]
+[ext_resource type="Texture2D" uid="uid://dqnshxojps0hv" path="res://assets/art/objects/sign.png" id="1_gvexl"]
+[ext_resource type="Texture2D" uid="uid://b1p3ae53c3y4i" path="res://assets/art/language/danger.png" id="2_k8tkj"]
 
-[node name="Prompt" type="Control"]
+[node name="Sign" type="Control"]
 layout_mode = 3
 anchor_left = -0.355
 anchor_top = -0.391
@@ -19,17 +19,23 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 3.05176e-05
+offset_bottom = 82.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_5hmo0")
-region_rect = Rect2(32, 32, 256, 256)
+texture = ExtResource("1_gvexl")
+region_rect = Rect2(3, 5, 26, 48)
 
 [node name="SymbolContainer" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -3.0
+offset_right = -14.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_yxoov")
+texture = ExtResource("2_k8tkj")
 expand_mode = 4

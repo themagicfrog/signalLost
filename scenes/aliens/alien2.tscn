@@ -158,6 +158,7 @@ position = Vector2(17, -20)
 shape = SubResource("RectangleShape2D_k1ndv")
 
 [node name="Prompt" parent="." instance=ExtResource("4_4ohs7")]
+visible = false
 anchor_top = 0.0
 anchor_right = 0.0
 offset_left = -40.0

@@ -3,6 +3,7 @@ extends Node
 @onready var oxygen_bar: ProgressBar = $"../UI/Oxygen/OxygenBar"
 @onready var hearts: Array[Node] = []
 @onready var timer: Timer = $"../UI/Timer"
+@onready var player: CharacterBody2D = $"../Player"
 
 signal oxygen_level_changed(amount: float)
 
@@ -41,4 +42,4 @@ func _on_timer_timeout():
 		oxygen_bar.value = oxygen
 		oxygen_level_changed.emit(oxygen)
 	else:
-		get_tree().reload_current_scene()
+		player.die()

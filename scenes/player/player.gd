@@ -51,8 +51,11 @@ var current_option := 1
 const SELECTED_OPTION := Color(1, 1, 1, 1) 
 const UNSELECTED_OPTION := Color(0.8, 0.8, 0.8, 0.7) 
 var current_alien: Node2D
+var death_pos = Vector2(-984, -3282)
 
 func _ready() -> void:
+	add_to_group("player")
+	
 	manager.oxygen_level_changed.connect(_on_oxygen_level_changed)
 
 	camera.zoom = INITIAL_ZOOM
@@ -307,3 +310,9 @@ func _process(_delta: float) -> void:
 func fade_out_key(key: TextureRect) -> void:
 	var tween = create_tween()
 	tween.tween_property(key, "modulate:a", 0.0, KEY_FADE_OUT_DURATION)
+
+func die() -> void:
+	flash()
+	manager.oxygen = 100
+	await get_tree().create_timer(0.15).timeout
+	position = death_pos

@@ -291,11 +291,11 @@ animations = [{
 size = Vector2(46, 121.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cpkhp"]
-radius = 35.0
-height = 72.0
+radius = 29.0
+height = 58.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nh6gu"]
-size = Vector2(128, 73)
+size = Vector2(128, 47)
 
 [sub_resource type="GDScript" id="GDScript_y0f5l"]
 script/source = "extends Control
@@ -371,7 +371,7 @@ position = Vector2(2, 5.25)
 shape = SubResource("RectangleShape2D_hkeag")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(1, -26)
+position = Vector2(3, -26)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_cpkhp")
 
@@ -380,7 +380,7 @@ position = Vector2(0, -31)
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(34, -0.500125)
+position = Vector2(34, -4.50013)
 shape = SubResource("RectangleShape2D_nh6gu")
 
 [node name="Option1" parent="." instance=ExtResource("4_53wtx")]

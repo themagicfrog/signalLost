@@ -21,17 +21,15 @@ func start_dialogue() -> void:
 	if current_dialogue.is_empty():
 		return
 		
-	# Show alien's symbols
 	display_symbols(current_dialogue.alien_text)
-	# Play alien's animation if specified
+
 	if current_dialogue.has("alien_sprite"):
 		sprite.play(current_dialogue.alien_sprite)
 
 func display_symbols(symbols: Array) -> void:
-	# Update the symbol container directly since it's a TextureRect
+
 	if symbols.size() > 0:
-		# Use the first symbol from the array to determine which texture to load
-		var symbol_name = symbols[0]  # e.g. "yes" or "no"
+		var symbol_name = symbols[0] 
 		var texture = load("res://assets/art/language/" + symbol_name + ".png")
 		if texture:
 			prompt.get_node("SymbolContainer").texture = texture
@@ -42,9 +40,8 @@ func display_symbols(symbols: Array) -> void:
 func handle_player_choice(option: int) -> void:
 	if current_dialogue.has("options") and current_dialogue.options.effects.has(option):
 		var effect = current_dialogue.options.effects[option]
-		dialogue_manager.process_effect(effect, get_tree().get_first_node_in_group("player"), self)
+		dialogue_manager.process_effect(effect, get_tree().get_first_node_in_group("player"))
 		
-		# Check if there's a next dialogue to transition to
 		if effect.has("next_dialogue"):
 			current_dialogue_id = effect.next_dialogue
 

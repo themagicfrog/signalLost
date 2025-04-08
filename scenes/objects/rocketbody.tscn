@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqix7nl6s2x5w"]
+
+[ext_resource type="Script" path="res://scenes/objects/rocketcone.gd" id="1_clsjs"]
+[ext_resource type="Texture2D" uid="uid://bkhdsfkuoomjp" path="res://assets/art/objects/rocketbody.png" id="2_lm5hi"]
+[ext_resource type="AudioStream" uid="uid://b2vie702vggq1" path="res://assets/sounds/magic.mp3" id="3_buyhh"]
+[ext_resource type="AudioStream" uid="uid://cwk6o6ve2eioa" path="res://assets/sounds/collect.mp3" id="4_k3oen"]
+
+[sub_resource type="Curve" id="Curve_7t7cm"]
+_data = [Vector2(0.048, 0.995539), 0.0, 0.0, 0, 0, Vector2(1, 0.138984), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_jgfuf"]
+offsets = PackedFloat32Array(0, 0.047817)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7fsx"]
+size = Vector2(114, 185)
+
+[node name="RocketBody" type="Area2D"]
+script = ExtResource("1_clsjs")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 90
+lifetime = 3.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 15.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_7t7cm")
+color_ramp = SubResource("Gradient_jgfuf")
+hue_variation_min = -0.99
+hue_variation_max = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.52588e-05, 1.52588e-05)
+scale = Vector2(8.10938, 8.10938)
+texture = ExtResource("2_lm5hi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_l7fsx")
+
+[node name="sfx_magic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_buyhh")
+
+[node name="sfx_collect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_k3oen")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

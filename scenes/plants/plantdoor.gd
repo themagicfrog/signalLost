@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+@export var door_id: String = "door_1"
+
 @onready var manager: Node = %Manager
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 

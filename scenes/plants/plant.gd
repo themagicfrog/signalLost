@@ -13,4 +13,3 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		body.flash()
 		await get_tree().create_timer(0.5).timeout
 		manager.decreaseOxygen()
-		#body.apply_screen_shake(0.7) 

@@ -22,7 +22,7 @@ const KEY_FADE_OUT_DURATION = 0.5
 @onready var particles2: CPUParticles2D = $CPUParticles2D2
 @onready var option_1: Control = $Option1
 @onready var option_2: Control = $Option2
-@onready var plant_door: RigidBody2D = $"../Sections/Sky/Plants/PlantDoor"
+@onready var plant_door: RigidBody2D = $"../Sections/Sky/Doors/PlantDoor"
 @onready var animated_sprite_2_ds: AnimatedSprite2D = $AnimatedSprite2Ds
 @onready var dialogue_manager = get_tree().get_first_node_in_group("dialogue_manager")
 
@@ -241,7 +241,6 @@ func flash() -> void:
 
 func start_alien_interaction() -> void:
 	if current_alien and dialogue_manager:
-		# Make sure we're dealing with an alien node
 		if not current_alien.has_method("start_dialogue"):
 			return
 			
